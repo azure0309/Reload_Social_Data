@@ -28,11 +28,11 @@ class DBConnect(object):
             self.db_username = SECRETS['username']
             self.db_password = SECRETS['password']
         except KeyError as err:
-            self.db_hostname = 'localhost'
-            self.db_name = 'dentsu_casting'
+            self.db_hostname = 'dentsu-casting-stg-211113.c7yvenrstrjg.ap-northeast-1.rds.amazonaws.com'
+            self.db_name = 'dentsu_casting_stg'
             self.db_port = 3306
-            self.db_username = 'root'
-            self.db_password = 'azure_0309'
+            self.db_username = 'dc_stg'
+            self.db_password = 'dD34dmQMOycbQuyzl7bF'
         CONN_STR = 'mysql+pymysql://{2}:{3}@{0}:{4}/{1}'.format(
             self.db_hostname,
             self.db_name,

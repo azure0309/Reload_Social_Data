@@ -298,12 +298,12 @@ class BatchStatus(object):
     def update_batch_status(self, batch_start_date, mode):
         if mode == 'start':
             with self.engine.connect() as conn:
-                query = f"update {self.TABLE_NAME} set batch_status = 1 where batch_start_date = '{batch_start_date}'"
+                query = f"update {self.TABLE_NAME} set batch_status = 1 where batch_end_date = '{batch_start_date}'"
                 conn.execute(query)
                 print('Changed status to 1 of running batch_id')
         if mode == 'finish':
             with self.engine.connect() as conn:
-                query = f"update {self.TABLE_NAME} set batch_status = 2 where batch_start_date = '{batch_start_date}'"
+                query = f"update {self.TABLE_NAME} set batch_status = 2 where batch_end_date = '{batch_start_date}'"
                 conn.execute(query)
                 print('Changed status to 2 of running batch_id')
 
@@ -403,5 +403,6 @@ class TalentCombined:
 
 
 for json_file in os.listdir('json_files'):
+#     print(json_file)
     obj_execute = Reload_Social_Datas(json_file)
     obj_execute.execute()
