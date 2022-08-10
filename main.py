@@ -295,15 +295,15 @@ class BatchStatus(object):
 
     # 実行対象日付の情報を返します
     # batch_status=1 の条件で t_batch_status テーブルからデータを取得します
-    def update_batch_status(self, batch_start_date, mode):
+    def update_batch_status(self, batch_end_date, mode):
         if mode == 'start':
             with self.engine.connect() as conn:
-                query = f"update {self.TABLE_NAME} set batch_status = 1 where batch_end_date = '{batch_start_date}'"
+                query = f"update {self.TABLE_NAME} set batch_status = 1 where batch_end_date = '{batch_end_date}'"
                 conn.execute(query)
                 print('Changed status to 1 of running batch_id')
         if mode == 'finish':
             with self.engine.connect() as conn:
-                query = f"update {self.TABLE_NAME} set batch_status = 2 where batch_end_date = '{batch_start_date}'"
+                query = f"update {self.TABLE_NAME} set batch_status = 2 where batch_end_date = '{batch_end_date}'"
                 conn.execute(query)
                 print('Changed status to 2 of running batch_id')
 
